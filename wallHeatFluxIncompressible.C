@@ -5,8 +5,21 @@
     \\  /    A nd           | Copyright (C) 1991-2008 OpenCFD Ltd.
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
+2010-08-02 Eelco van Vliet: 1st public version of wallHeatFluxIncompressible:
+  http://www.cfd-online.com/Forums/openfoam-solving/66705-wallheatflux-bc-not-constant-after-restart.html#post269812
+
+2012-05-21 Eelco van Vliet:
+  Quoting: http://www.cfd-online.com/Forums/openfoam-post-processing/101972-wallheatflux-utility-incompressible-case.html#post362191
+  «modified the standard wallHeatflux utility which comes default with OF into
+  a version for incompressible flows. Also removed a bug out of the code.»
+
+2012-06-26 Eelco van Vliet:
+  Quoting: http://www.cfd-online.com/Forums/openfoam-post-processing/101972-wallheatflux-utility-incompressible-case.html#post368330
+  «p is now not required anymore.»
+
+-------------------------------------------------------------------------------
 License
-    This file is part of OpenFOAM.
+    This file is a derivative work of OpenFOAM.
 
     OpenFOAM is free software; you can redistribute it and/or modify it
     under the terms of the GNU General Public License as published by the
@@ -31,7 +44,6 @@ Description
     patches.
     Based on wallHeatFlux with changes to allow it on incompressible flows
     Also removed a bug at the typeid checkline
-    Eelco van Vliet
 \*---------------------------------------------------------------------------*/
 
 #include "fvCFD.H"
