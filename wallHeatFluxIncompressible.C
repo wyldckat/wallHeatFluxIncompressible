@@ -17,6 +17,8 @@
   Quoting: http://www.cfd-online.com/Forums/openfoam-post-processing/101972-wallheatflux-utility-incompressible-case.html#post368330
   «p is now not required anymore.»
 
+2014-06-22: Bruno Santos: Adapted to OpenFOAM 2.2.x.
+
 -------------------------------------------------------------------------------
 License
     This file is a derivative work of OpenFOAM.
@@ -74,30 +76,30 @@ int main(int argc, char *argv[])
          // update the turbulence fields
         turbulence->read();
 
-        if (!(IOobject("kappat", runTime.timeName(), mesh).headerOk()))
+        if (!(IOobject("alphat", runTime.timeName(), mesh).headerOk()))
         {
             Info<< "\nCalculating turbulent heat conductivity " << endl;
-            kappat = turbulence->nut()/Prt;
-            kappat.correctBoundaryConditions();
+            alphat = turbulence->nut()/Prt;
+            alphat.correctBoundaryConditions();
         }
         else
         {
-            Info<< "\nRead turbulent heat conductivity kappat" << endl;
+            Info<< "\nRead turbulent heat conductivity alphat" << endl;
         }
 
-        if (!(IOobject("kappaEff", runTime.timeName(), mesh).headerOk()))
+        if (!(IOobject("alphaEff", runTime.timeName(), mesh).headerOk()))
         {
             Info<< "\nCalculating effective heat conductivity " << endl;
-            kappaEff=turbulence->nu()/Pr+kappat;
+            alphaEff=turbulence->nu()/Pr+alphat;
         }
         else
         {
-            Info<< "\nRead effective heat conductivity kappaEff" << endl;
+            Info<< "\nRead effective heat conductivity alphaEff" << endl;
         }
 
         gradT=fvc::snGrad(T);
 
-        surfaceScalarField heatFlux =fvc::interpolate(kappaEff*Cp0*rho0)*gradT;
+        surfaceScalarField heatFlux =fvc::interpolate(alphaEff*Cp0*rho0)*gradT;
 
         const surfaceScalarField::GeometricBoundaryField& patchGradT =
                  gradT.boundaryField();
@@ -177,7 +179,7 @@ int main(int argc, char *argv[])
       wallGradT.write();
       gradT.write();
       wallHeatFlux.write();
-      kappaEff.write();
+      alphaEff.write();
     }
 
     Info<< "End" << endl;

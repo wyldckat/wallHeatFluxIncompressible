@@ -57,34 +57,34 @@
     );
 
 
-    Info << "Creating field kappaEff\n" << endl;
-    volScalarField kappaEff
+    Info << "Creating field alphaEff\n" << endl;
+    volScalarField alphaEff
     (
         IOobject
         (
-            "kappaEff",
+            "alphaEff",
             runTime.timeName(),
             mesh,
             IOobject::READ_IF_PRESENT,
             IOobject::AUTO_WRITE
         ),
         mesh,
-        dimensionedScalar("kappaEff", dimLength*dimLength/dimTime,0)
+        dimensionedScalar("alphaEff", dimLength*dimLength/dimTime,0)
     );
 
-    Info << "Creating field kappat\n" << endl;
-    volScalarField kappat
+    Info << "Creating field alphat\n" << endl;
+    volScalarField alphat
     (
         IOobject
         (
-            "kappat",
+            "alphat",
             runTime.timeName(),
             mesh,
             IOobject::READ_IF_PRESENT,
             IOobject::AUTO_WRITE
         ),
         mesh,
-        dimensionedScalar("kappat", dimLength*dimLength/dimTime,0)
+        dimensionedScalar("alphat", dimLength*dimLength/dimTime,0)
     );
 
 
