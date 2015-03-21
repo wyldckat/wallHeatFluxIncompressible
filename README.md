@@ -56,7 +56,7 @@ Using Git
      git checkout OF21x
      ```
 
-   4. Build `wallHeatFluxIncompressible` by running:
+  4. Build `wallHeatFluxIncompressible` by running:
 
      ```
      wmake
@@ -93,14 +93,14 @@ Using Zip
      wget https://github.com/wyldckat/wallHeatFluxIncompressible/archive/OF21x.zip
      ```
 
-   3. Unzip the respective file and go into the respective folder, for example:
+  3. Unzip the respective file and go into the respective folder, for example:
 
      ```
      unzip OF23x.zip
      cd wallHeatFluxIncompressible-OF23x
      ```
      
-   4. Build `wallHeatFluxIncompressible` by running:
+  4. Build `wallHeatFluxIncompressible` by running:
 
      ```
      wmake
