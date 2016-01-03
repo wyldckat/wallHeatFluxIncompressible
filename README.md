@@ -5,7 +5,7 @@ Utility originally by the forum member Eelco van Vliet, for OpenFOAM 2.1.0: http
 
 It's the one provided in the branch `OF21x`.
 
-This git repository further adapts the utility for OpenFOAM 2.2.x and 2.3.x, done by Bruno Santos (wyldckat@github working at blueCAPE Lda: www.bluecape.com.pt).
+This git repository further adapts the utility for OpenFOAM 2.2.x and 2.3.x, done by Bruno Santos (wyldckat@github working at [blueCAPE Lda](http://www.bluecape.com.pt)).
 
 WARNING: If you're planning on using OpenFOAM 2.2.0, then use the branch `OF21x`.
 
