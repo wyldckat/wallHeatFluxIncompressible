@@ -5,9 +5,11 @@ Utility originally by the forum member Eelco van Vliet, for OpenFOAM 2.1.0: http
 
 It's the one provided in the branch `OF21x`.
 
-This git repository further adapts the utility for OpenFOAM 2.2.x and 2.3.x, done by Bruno Santos (wyldckat@github).
+This git repository further adapts the utility for OpenFOAM 2.2.x and 2.3.x, done by Bruno Santos (wyldckat@github working at [blueCAPE Lda](http://www.bluecape.com.pt)).
 
 WARNING: If you're planning on using OpenFOAM 2.2.0, then use the branch `OF21x`.
+
+NOTE: In the Foundation's OpenFOAM-dev there is now a more general implementation that was introduced in the commits related to this bug report: http://www.openfoam.org/mantisbt/view.php?id=1856 - this means that the Boussinesq implementation is now part of the compressible heat transfer solvers, therefore no longer depending on explicit solvers dedicated to the Boussinesq implementation.
 
 
 License
