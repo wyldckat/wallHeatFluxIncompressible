@@ -25,6 +25,7 @@
         ),
         mesh
     );
+    T.correctBoundaryConditions();
 
 
     Info << "Reading field Q\n" << endl;
