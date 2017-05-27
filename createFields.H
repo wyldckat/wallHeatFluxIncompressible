@@ -25,7 +25,6 @@
         ),
         mesh
     );
-    T.correctBoundaryConditions();
 
 
     Info << "Reading field Q\n" << endl;
@@ -118,3 +117,6 @@
     );
 
     turbulence->read();
+
+    //Correct boundaries only after all fields are loaded in
+    T.correctBoundaryConditions();
