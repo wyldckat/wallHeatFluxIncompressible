@@ -116,7 +116,5 @@
         incompressible::turbulenceModel::New(U, phi, laminarTransport)
     );
 
-    turbulence->read();
-
     //Correct boundaries only after all fields are loaded in
     T.correctBoundaryConditions();

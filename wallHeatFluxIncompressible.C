@@ -19,6 +19,8 @@
 
 2014-06-22: Bruno Santos: Adapted to OpenFOAM 2.2.x.
 
+2018-06-15: Bruno Santos @ FSD blueCAPE Lda: Adapted to OpenFOAM 5.x.
+
 -------------------------------------------------------------------------------
 License
     This file is a derivative work of OpenFOAM.
@@ -49,9 +51,8 @@ Description
 \*---------------------------------------------------------------------------*/
 
 #include "fvCFD.H"
-// modified from  wallHeatFlux
 #include "singlePhaseTransportModel.H"
-#include "turbulenceModel.H"
+#include "turbulentTransportModel.H"
 #include "wallFvPatch.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
@@ -76,7 +77,11 @@ int main(int argc, char *argv[])
          // update the turbulence fields
         turbulence->read();
 
-        if (!(IOobject("alphat", runTime.timeName(), mesh).headerOk()))
+        if
+        (
+            !IOobject("alphat", runTime.timeName(), mesh)
+                .typeHeaderOk<volScalarField>(true)
+        )
         {
             Info<< "\nCalculating turbulent heat conductivity " << endl;
             alphat = turbulence->nut()/Prt;
@@ -87,7 +92,11 @@ int main(int argc, char *argv[])
             Info<< "\nRead turbulent heat conductivity alphat" << endl;
         }
 
-        if (!(IOobject("alphaEff", runTime.timeName(), mesh).headerOk()))
+        if
+        (
+            !IOobject("alphaEff", runTime.timeName(), mesh)
+                .typeHeaderOk<volScalarField>(true)
+        )
         {
             Info<< "\nCalculating effective heat conductivity " << endl;
             alphaEff=turbulence->nu()/Pr+alphat;
@@ -101,12 +110,12 @@ int main(int argc, char *argv[])
 
         surfaceScalarField heatFlux =fvc::interpolate(alphaEff*Cp0*rho0)*gradT;
 
-        const surfaceScalarField::GeometricBoundaryField& patchGradT =
+        const surfaceScalarField::Boundary& patchGradT =
                  gradT.boundaryField();
-          
-        const surfaceScalarField::GeometricBoundaryField& patchHeatFlux =
+
+        const surfaceScalarField::Boundary& patchHeatFlux =
                  heatFlux.boundaryField();
-//
+
         Info<< "\nWall heat fluxes " << endl;
         forAll(patchHeatFlux, patchi)
         {
@@ -140,7 +149,7 @@ int main(int argc, char *argv[])
       }
       Info<< endl;
 
-      
+
       volScalarField wallHeatFlux
         (
             IOobject
@@ -164,15 +173,15 @@ int main(int argc, char *argv[])
             mesh,
             dimensionedScalar("wallGradT", gradT.dimensions(), 0.0)
         );
-   
+
       forAll(wallHeatFlux.boundaryField(), patchi)
       {
-         wallHeatFlux.boundaryField()[patchi] = patchHeatFlux[patchi];
+         wallHeatFlux.boundaryFieldRef()[patchi] = patchHeatFlux[patchi];
       }
 
       forAll(wallGradT.boundaryField(), patchi)
       {
-         wallGradT.boundaryField()[patchi] = patchGradT[patchi];
+         wallGradT.boundaryFieldRef()[patchi] = patchGradT[patchi];
       }
 
 
