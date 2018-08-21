@@ -5,7 +5,7 @@ Utility originally by the forum member Eelco van Vliet, for OpenFOAM 2.1.0: http
 
 It's the one provided in the branch `OF21x`.
 
-This git repository further adapts the utility for OpenFOAM 2.2.x and 2.3.x, done by Bruno Santos (wyldckat@github working at [blueCAPE Lda](http://www.bluecape.com.pt)).
+This git repository further adapts the utility for OpenFOAM 2.2.x, 2.3.x, 5 and 6, done by Bruno Santos (wyldckat@github working at [FSD blueCAPE Lda](http://www.bluecape.com.pt)).
 
 WARNING: If you're planning on using OpenFOAM 2.2.0, then use the branch `OF21x`.
 
@@ -18,8 +18,8 @@ License
 The same as OpenFOAM(R), namely GNU GPL v3. For more information, see the file LICENSE.
 
 
-Building on OpenFOAM 2.3.x, 2.2.x, 2.1.x
-========================================
+Building on OpenFOAM 6, 5, 2.3.x, 2.2.x, 2.1.x
+==============================================
 
 Using Git
 ---------
@@ -39,6 +39,12 @@ Using Git
      ```
 
   3. Checkout the repository respective to the version of OpenFOAM you are using:
+
+   * OpenFOAM 5 or 6:
+
+     ```
+     git checkout OF5
+     ```
 
    * OpenFOAM 2.3.x:
 
@@ -77,6 +83,12 @@ Using Zip
 
   2. Get the Zip file for the repository respective to the version of OpenFOAM you are using:
 
+   * OpenFOAM 5 or 6:
+
+     ```
+     wget https://github.com/wyldckat/wallHeatFluxIncompressible/archive/OF5.zip
+     ```
+
    * OpenFOAM 2.3.x:
 
      ```
@@ -101,7 +113,7 @@ Using Zip
      unzip OF23x.zip
      cd wallHeatFluxIncompressible-OF23x
      ```
-     
+
   4. Build `wallHeatFluxIncompressible` by running:
 
      ```
